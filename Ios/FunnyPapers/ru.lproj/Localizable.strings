@@ -1,0 +1,17 @@
+/* 
+  Localizable.strings
+  FunnyPapers
+
+  Created by studio76 on 08.06.15.
+  Copyright (c) 2015 Studio76. All rights reserved.
+*/
+
+"alert_button_buy"="Купить доступ";
+"alert_title"="Вип обои";
+"alert_subtitle"="Купите и разблокируйте доступ к этим обоям";
+"alert_done"="Отмена";
+
+"setting_rad"="Убрать рекламу";
+"setting_vip"="Разблокировать Вип обои";
+"setting_color"="Выбрать цвет приложения";
+"setting_restore"="Восстановить покупки";

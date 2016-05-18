@@ -1,0 +1,18 @@
+/* 
+  Localizable.strings
+  FunnyPapers
+
+  Created by studio76 on 08.06.15.
+  Copyright (c) 2015 Studio76. All rights reserved.
+*/
+
+
+"alert_button_buy"="Buy access";
+"alert_title"="Vip Wallpapers";
+"alert_subtitle"="Please buy and unlock this wallpapers";
+"alert_done"="Done";
+
+"setting_rad"="Remove AD";
+"setting_vip"="Open Vip Wallpapers";
+"setting_color"="Choose color app";
+"setting_restore"="Restore purchase";
