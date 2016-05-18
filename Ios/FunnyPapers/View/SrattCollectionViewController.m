@@ -91,7 +91,7 @@ static NSString * const reuseIdentifier = @"Cell";
      [self loadData];
     [self createTransition];
      self.interstitial.delegate = self;
-    
+    return;
     if ([bannerOrFull isEqualToString:@"YES"]) {
         
     

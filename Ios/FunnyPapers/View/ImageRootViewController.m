@@ -97,7 +97,7 @@ static NSString *const menuCellIdentifier = @"rotationCell";
     
     self.interstitial.delegate = self;
   // [self createAndLoadInterstitial];
-    
+    return;
     if ([bannerOrFull isEqualToString:@"YES"]) {
         
         
@@ -461,7 +461,7 @@ didFailToReceiveAdWithError:(GADRequestError *)error {
     _documentController = [UIDocumentInteractionController interactionControllerWithURL:[NSURL fileURLWithPath:imagePath]];
     _documentController.delegate=self;
    
-    NSString *captinText = [NSString stringWithFormat:@"Best wallpaper for iPhone. Download link: %@", Url_My_App];
+    NSString *captinText = [NSString stringWithFormat:@"Best wallpaper app for your iPhone. Download link: %@", Url_My_App];
     _documentController.annotation=[NSDictionary dictionaryWithObjectsAndKeys:captinText,@"InstagramCaption", nil];
     _documentController.UTI = @"com.instagram.exclusivegram";
     // [docController presentOpenInMenuFromRect:self.view.frame inView:self.view animated:YES];

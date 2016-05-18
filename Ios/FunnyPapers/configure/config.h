@@ -9,7 +9,7 @@
 // change url backend Funny Papers
 #define PointParseUrl          @"http://www.insurrection.studio/"   // slash end "/" required !!!
 #define Url_My_App             @"Itunes_Url_app"
-#define fPstartAlbum           @"cb80694b-1c61-11e6-ac2e-0026b92d608d"
+#define fPstartAlbum           @"0105280e-1bae-11e6-ac2e-0026b92d608d"
 
 /// share text
 #define SHARETEXT              @"Gool app download blablabla"
