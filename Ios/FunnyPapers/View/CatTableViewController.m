@@ -131,27 +131,27 @@
                           error:&error];
     
     dataAlbum = [json objectForKey:@"images"];
-    NSDictionary *storyz = [dataAlbum objectAtIndex:indexPath.row];
-    
-    NSString *key = [[storyz objectForKey:@"url"] MD5Hash];
-    NSData *data2 = [ThumbnailCache objectForKey:key];
-    if (data2) {
-        UIImage *image = [UIImage imageWithData:data2];
-        cell.catImage.image = image;
-    } else {
-        cell.catImage.image = [UIImage imageNamed:@"ph"];
-        dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0ul);
-        dispatch_async(queue, ^{
-            NSData *data3 = [NSData dataWithContentsOfURL:[NSURL URLWithString:[storyz objectForKey:@"url"]]];
-            [ThumbnailCache setObject:data3 forKey:key];
-            UIImage *image = [UIImage imageWithData:data3];
-            dispatch_sync(dispatch_get_main_queue(), ^{
-                cell.catImage.image = image;
-            });
-        });
-    }
-    
-    
+
+
+//    NSDictionary *storyz = [dataAlbum objectAtIndex:indexPath.row];
+//    
+//    NSString *key = [[storyz objectForKey:@"url"] MD5Hash];
+//    NSData *data2 = [ThumbnailCache objectForKey:key];
+//    if (data2) {
+//        UIImage *image = [UIImage imageWithData:data2];
+//        cell.catImage.image = image;
+//    } else {
+//        cell.catImage.image = [UIImage imageNamed:@"ph"];
+//        dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0ul);
+//        dispatch_async(queue, ^{
+//            NSData *data3 = [NSData dataWithContentsOfURL:[NSURL URLWithString:[storyz objectForKey:@"url"]]];
+//            [ThumbnailCache setObject:data3 forKey:key];
+//            UIImage *image = [UIImage imageWithData:data3];
+//            dispatch_sync(dispatch_get_main_queue(), ^{
+//                cell.catImage.image = image;
+//            });
+//        });
+//    }
     
     
     return cell;
