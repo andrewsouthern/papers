@@ -2,8 +2,8 @@
 //  SrattCollectionViewController.m
 //  FunnyPapers
 //
-//  Created by studio76 on 07.05.15.
-//  Copyright (c) 2015 Studio76. All rights reserved.
+//  Created by Andrew Southern on 05.20.16.
+//  Copyright (c) 2016 Andrew Southern. All rights reserved.
 //
 
 #import "SrattCollectionViewController.h"
@@ -92,70 +92,71 @@ static NSString * const reuseIdentifier = @"Cell";
     [self createTransition];
      self.interstitial.delegate = self;
     return;
-    if ([bannerOrFull isEqualToString:@"YES"]) {
-        
+//    if ([bannerOrFull isEqualToString:@"YES"]) {
+//        
+//    
+//    
+//     self.bannerView = [[UIView alloc] initWithFrame:CGRectMake(0, 64, self.view.frame.size.width, 50)];
+//     bannerView.backgroundColor = [UIColor redColor];
+//     self.bannerViewAd = [[GADBannerView alloc] initWithFrame:CGRectMake(0, 64, self.view.frame.size.width, 50)];
+//     self.bannerViewAd.rootViewController = self;
+//     self.bannerViewAd.adUnitID = googleAdBannerKey;
+//     GADRequest *request = [GADRequest request];
+//     [self.bannerViewAd loadRequest:request];
+//               if ([[RageIAPHelper sharedInstance] productPurchased:deleteAd]) {
+//        
+//               }else{
+//        
+//               [self.view addSubview:bannerViewAd];
+//        
+//               }
+//    } else{
+//        
+//               if ([[RageIAPHelper sharedInstance] productPurchased:deleteAd]) {
+//            
+//               }else{
+//            
+//               [self createAndLoadInterstitial];
+//            
+//               }
+//        
+//       }
     
     
-     self.bannerView = [[UIView alloc] initWithFrame:CGRectMake(0, 64, self.view.frame.size.width, 50)];
-     bannerView.backgroundColor = [UIColor redColor];
-     self.bannerViewAd = [[GADBannerView alloc] initWithFrame:CGRectMake(0, 64, self.view.frame.size.width, 50)];
-     self.bannerViewAd.rootViewController = self;
-     self.bannerViewAd.adUnitID = googleAdBannerKey;
-     GADRequest *request = [GADRequest request];
-     [self.bannerViewAd loadRequest:request];
-               if ([[RageIAPHelper sharedInstance] productPurchased:deleteAd]) {
-        
-               }else{
-        
-               [self.view addSubview:bannerViewAd];
-        
-               }
-    } else{
-        
-               if ([[RageIAPHelper sharedInstance] productPurchased:deleteAd]) {
-            
-               }else{
-            
-               [self createAndLoadInterstitial];
-            
-               }
-        
-       }
     
     
     
-    
-    
-}
-
-- (void)createAndLoadInterstitial {
-    self.interstitial = [[GADInterstitial alloc] initWithAdUnitID:googleAdFullKey];
-    
-    self.interstitial.delegate = self;
-    
-    GADRequest *request = [GADRequest request];
-    
-    
-    [self.interstitial loadRequest:request];
-    
-    if ([self.interstitial isReady]) {
-        [self.interstitial presentFromRootViewController:self];
-    }
-    [self.interstitial presentFromRootViewController:self];
+//}
+//
+//- (void)createAndLoadInterstitial {
+//    self.interstitial = [[GADInterstitial alloc] initWithAdUnitID:googleAdFullKey];
+//    
+//    self.interstitial.delegate = self;
+//    
+//    GADRequest *request = [GADRequest request];
+//    
+//    
+//    [self.interstitial loadRequest:request];
+//    
+//    if ([self.interstitial isReady]) {
+//        [self.interstitial presentFromRootViewController:self];
+//    }
+//    [self.interstitial presentFromRootViewController:self];
 }
 
 
 -(void)viewWillAppear:(BOOL)animated{
+    bannerViewAd.hidden = YES;
     
-    if ([[RageIAPHelper sharedInstance] productPurchased:deleteAd]) {
-        
-        bannerViewAd.hidden = YES;
-        
-    }else{
-        
-        [self.view addSubview:bannerViewAd];
-        
-    }
+//    if ([[RageIAPHelper sharedInstance] productPurchased:deleteAd]) {
+//        
+//        bannerViewAd.hidden = YES;
+//        
+//    }else{
+//        
+//        bannerViewAd.hidden = YES;
+//        
+//    }
     
     NSUserDefaults *udef = [NSUserDefaults standardUserDefaults];
     NSString *colz = [udef objectForKey:@"color"];
@@ -392,47 +393,47 @@ static NSString * const reuseIdentifier = @"Cell";
 }
 
 
-- (BOOL)shouldPerformSegueWithIdentifier:(NSString *)identifier sender:(id)sender {
-    if ([identifier isEqualToString:@"imagePush"]) {
-        NSLog(@"Segue Blocked");
-        
-        [self ressivePayAlbum:payAlbum];
-        
-         if ([payAlbumOut isEqualToString:@"0"]) {
-             
-             return YES;
-             
-         } else{
-             
-             if ([[RageIAPHelper sharedInstance] productPurchased:buyAlbum]) {
-                 
-                 return YES;
-                 
-             }else{
-                 
-                 SCLAlertView *alert = [[SCLAlertView alloc] init];
-             
-                 [alert addButton:NSLocalizedString(@"alert_button_buy", nil) actionBlock:^(void) {
-                    
-                     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-                     InappTableViewController *myVC = (InappTableViewController *)[storyboard instantiateViewControllerWithIdentifier:@"apps"];
-                     [self.navigationController pushViewController:myVC animated:YES];
-                     
-                     
-                 }];
-                 [alert showWarning:self title:NSLocalizedString(@"alert_title", nil)subTitle:NSLocalizedString(@"alert_subtitle", nil)  closeButtonTitle: NSLocalizedString(@"alert_done", nil)  duration:0.0f];
-                 
-                 return NO;
-             }
-            
-            
-             
-         }
-       
-    }
+//- (BOOL)shouldPerformSegueWithIdentifier:(NSString *)identifier sender:(id)sender {
+//    if ([identifier isEqualToString:@"imagePush"]) {
+//        NSLog(@"Segue Blocked");
+//        
+//        [self ressivePayAlbum:payAlbum];
+
+//         if ([payAlbumOut isEqualToString:@"0"]) {
+//             
+//             return YES;
+//             
+//         } else{
+//             
+//             if ([[RageIAPHelper sharedInstance] productPurchased:buyAlbum]) {
+//                 
+//                 return YES;
+//                 
+//             }else{
+//                 
+//                 SCLAlertView *alert = [[SCLAlertView alloc] init];
+//             
+//                 [alert addButton:NSLocalizedString(@"alert_button_buy", nil) actionBlock:^(void) {
+//                    
+//                     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+//                     InappTableViewController *myVC = (InappTableViewController *)[storyboard instantiateViewControllerWithIdentifier:@"apps"];
+//                     [self.navigationController pushViewController:myVC animated:YES];
+//                     
+//                     
+//                 }];
+//                 [alert showWarning:self title:NSLocalizedString(@"alert_title", nil)subTitle:NSLocalizedString(@"alert_subtitle", nil)  closeButtonTitle: NSLocalizedString(@"alert_done", nil)  duration:0.0f];
+//                 
+//                 return NO;
+//             }
+//            
+//            
+//             
+//         }
+//       
+//    }
     
-    return YES;
-}
+//    return YES;
+//}
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     
@@ -450,21 +451,20 @@ static NSString * const reuseIdentifier = @"Cell";
      }
 }
 
-- (void)interstitial:(GADInterstitial *)interstitial
-didFailToReceiveAdWithError:(GADRequestError *)error {
-    NSLog(@"interstitialDidFailToReceiveAdWithError: %@", [error localizedDescription]);
-}
 
-- (void)interstitialDidDismissScreen:(GADInterstitial *)interstitial {
-    NSLog(@"interstitialDidDismissScreen");
+//- (void)interstitial:(GADInterstitial *)interstitial
+//didFailToReceiveAdWithError:(GADRequestError *)error {
+//    NSLog(@"interstitialDidFailToReceiveAdWithError: %@", [error localizedDescription]);
+//}
+//
+//- (void)interstitialDidDismissScreen:(GADInterstitial *)interstitial {
+//    NSLog(@"interstitialDidDismissScreen");
+//    
     
-    
-}
-
-- (void)interstitialDidReceiveAd:(GADInterstitial *)ad
-{
-    [self.interstitial presentFromRootViewController:self];
-}
-
-
+//}
+//
+//- (void)interstitialDidReceiveAd:(GADInterstitial *)ad
+//{
+//    [self.interstitial presentFromRootViewController:self];
+//}
 @end

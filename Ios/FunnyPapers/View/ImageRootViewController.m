@@ -2,8 +2,8 @@
 //  ImageRootViewController.m
 //  FunnyPapers
 //
-//  Created by studio76 on 21.05.15.
-//  Copyright (c) 2015 Studio76. All rights reserved.
+//  Created by Andrew Southern on 05.20.16.
+//  Copyright (c) 2016 Andrew Southern. All rights reserved.
 //
 
 #import "ImageRootViewController.h"
@@ -17,6 +17,7 @@
 #import "UIImage+Resize.h"
 #import <MessageUI/MessageUI.h>
 #import <Social/Social.h>
+#import <Accounts/Accounts.h>
 
 static NSString *const menuCellIdentifier = @"rotationCell";
 
@@ -98,39 +99,39 @@ static NSString *const menuCellIdentifier = @"rotationCell";
     self.interstitial.delegate = self;
   // [self createAndLoadInterstitial];
     return;
-    if ([bannerOrFull isEqualToString:@"YES"]) {
-        
-        
-        
-        self.bannerView = [[UIView alloc] initWithFrame:CGRectMake(0, 64, self.view.frame.size.width, 50)];
-        _bannerView.backgroundColor = [UIColor redColor];
-        self.bannerViewAd = [[GADBannerView alloc] initWithFrame:CGRectMake(0, 64, self.view.frame.size.width, 50)];
-        self.bannerViewAd.rootViewController = self;
-        self.bannerViewAd.adUnitID = googleAdBannerKey;
-        GADRequest *request = [GADRequest request];
-        [self.bannerViewAd loadRequest:request];
-        if ([[RageIAPHelper sharedInstance] productPurchased:deleteAd]) {
-            
-        }else{
-            
-            [self.view addSubview:_bannerViewAd];
-            
-        }
-    } else{
-        
-        if ([[RageIAPHelper sharedInstance] productPurchased:deleteAd]) {
-            
-        }else{
-            
-            [self createAndLoadInterstitial];
-            
-        }
-        
+//    if ([bannerOrFull isEqualToString:@"YES"]) {
+//        
+//        
+//        
+//        self.bannerView = [[UIView alloc] initWithFrame:CGRectMake(0, 64, self.view.frame.size.width, 50)];
+//        _bannerView.backgroundColor = [UIColor redColor];
+//        self.bannerViewAd = [[GADBannerView alloc] initWithFrame:CGRectMake(0, 64, self.view.frame.size.width, 50)];
+//        self.bannerViewAd.rootViewController = self;
+//        self.bannerViewAd.adUnitID = googleAdBannerKey;
+//        GADRequest *request = [GADRequest request];
+//        [self.bannerViewAd loadRequest:request];
+//        if ([[RageIAPHelper sharedInstance] productPurchased:deleteAd]) {
+//            
+//        }else{
+//            
+//            [self.view addSubview:_bannerViewAd];
+//            
+//        }
+//    } else{
+//        
+//        if ([[RageIAPHelper sharedInstance] productPurchased:deleteAd]) {
+//            
+//        }else{
+//            
+//            [self createAndLoadInterstitial];
+//            
+//        }
+//        
     }
     
     
     
-}
+//}
 
 
 
@@ -341,15 +342,15 @@ didFailToReceiveAdWithError:(GADRequestError *)error {
 
 - (void)initiateMenuOptions {
     self.menuTitles = @[@"",
-                        @"Share  in WhatsApp",
-                        @"Share in Instagram",
-                        @"Share in facebook",
+//                        @"Share  in WhatsApp",
+                        @"Share on Twitter",
+                        @"Share on facebook",
                         @"Save image",
                         @"Close"];
     
     self.menuIcons = @[[UIImage imageNamed:@"close"],
-                       [UIImage imageNamed:@"whatsapp"],
-                       [UIImage imageNamed:@"insta"],
+//                       [UIImage imageNamed:@"whatsapp"],
+                       [UIImage imageNamed:@"twitter"],
                        [UIImage imageNamed:@"fb"],
                        [UIImage imageNamed:@"save"],
                        [UIImage imageNamed:@"close"]];
@@ -366,23 +367,23 @@ didFailToReceiveAdWithError:(GADRequestError *)error {
     }
     if (indexPath.row == 1) {
         
-        [self shareWp];
+        [self shareImageOnTwitter];
         
     }
     if (indexPath.row == 2) {
         
-        [self shareImageOnInstagram];
+        [self shareFb];
         
     }
     if (indexPath.row == 3) {
         
-        [self shareFb];
+        [self saveImageInRoll];
         
     }
-    if (indexPath.row == 4) {
-        
-         [self saveImageInRoll];
-    }
+//    if (indexPath.row == 4) {
+//        
+//         [self saveImageInRoll];
+//    }
     
     
 }
@@ -438,10 +439,15 @@ didFailToReceiveAdWithError:(GADRequestError *)error {
     [alert showSuccess:self title:@"Saved" subTitle:@"The image is now saved to your camera roll. Set your wallpaper and lockscreen from your camera roll :)" closeButtonTitle:@"Cool!" duration:0.0f];
 }
 
-/// share insta
+/// share Twitter
 
--(void)shareImageOnInstagram
-{
+-(void)shareImageOnTwitter{
+    
+    
+    SLComposeViewController *mySLComposerSheet = [SLComposeViewController composeViewControllerForServiceType:SLServiceTypeTwitter];
+    
+    [mySLComposerSheet setInitialText:[NSString stringWithFormat:@"Check out some sweet artwork by @andrewsouthern here %@", Url_My_App]];
+    
     
     NSDictionary *imageItem = [_imageArray objectAtIndex:(NSUInteger)currentIndexMain];
     
@@ -449,26 +455,13 @@ didFailToReceiveAdWithError:(GADRequestError *)error {
     NSData *data = [Cache objectForKey:key];
     
     UIImage *image = [UIImage imageWithData:data];
-    CGSize constraint = CGSizeMake(612, 612);
-    UIImage* scaledImgH = [image resizedImageToSize:constraint];
-    NSLog(@"Scaled image horizontal (%@), width: %.0f, height: %.0f, scale: %0.2f",scaledImgH,scaledImgH.size.width, scaledImgH.size.height, scaledImgH.scale);
     
-    NSString* imagePath = [NSString stringWithFormat:@"%@/image.igo", [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject]];
-    [[NSFileManager defaultManager] removeItemAtPath:imagePath error:nil];
-    [UIImagePNGRepresentation(scaledImgH) writeToFile:imagePath atomically:YES];
-    NSLog(@"image size: %@", NSStringFromCGSize(scaledImgH.size));
-    _documentController = [[UIDocumentInteractionController alloc]init];
-    _documentController = [UIDocumentInteractionController interactionControllerWithURL:[NSURL fileURLWithPath:imagePath]];
-    _documentController.delegate=self;
-   
-    NSString *captinText = [NSString stringWithFormat:@"Best wallpaper app for your iPhone. Download link: %@", Url_My_App];
-    _documentController.annotation=[NSDictionary dictionaryWithObjectsAndKeys:captinText,@"InstagramCaption", nil];
-    _documentController.UTI = @"com.instagram.exclusivegram";
-    // [docController presentOpenInMenuFromRect:self.view.frame inView:self.view animated:YES];
-    [_documentController presentOpenInMenuFromRect:CGRectZero
-                                           inView:self.view
-                                         animated:YES];
+    [mySLComposerSheet addImage:image];
     
+    
+    [self presentViewController:mySLComposerSheet animated:YES completion:^{
+        
+    }];
     
 }
 
@@ -477,7 +470,7 @@ didFailToReceiveAdWithError:(GADRequestError *)error {
     
     SLComposeViewController *mySLComposerSheet = [SLComposeViewController composeViewControllerForServiceType:SLServiceTypeFacebook];
     
-    [mySLComposerSheet setInitialText:[NSString stringWithFormat:@"Best wallpaper for iPhone. Download this app here %@", Url_My_App]];
+    [mySLComposerSheet setInitialText:[NSString stringWithFormat:@"Check out Andrew Southern's wallpaper app here %@", Url_My_App]];
     
     
     NSDictionary *imageItem = [_imageArray objectAtIndex:(NSUInteger)currentIndexMain];

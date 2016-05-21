@@ -1,9 +1,9 @@
 //
 //  AppDelegate.m
-//  FunnyPapers
+//  Papers
 //
-//  Created by studio76 on 07.05.15.
-//  Copyright (c) 2015 Studio76. All rights reserved.
+//  Created by Andrew Southern on 05.20.16.
+//  Copyright (c) 2016 Andrew Southern. All rights reserved.
 //
 
 #import "AppDelegate.h"

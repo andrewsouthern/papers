@@ -2,8 +2,8 @@
 //  IAPHelper.h
 //  In App Purchase Test
 //
-//  Created by Swapnil Godambe on 16/02/13.
-//  Copyright (c) 2013 __MyCompanyName__. All rights reserved.
+//  Created by Andrew Southern on 05.20.16.
+//  Copyright (c) 2016 Andrew Southern. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>

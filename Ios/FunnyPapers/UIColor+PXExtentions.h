@@ -2,8 +2,8 @@
 //  UIColor+PXExtentions.h
 //  folio
 //
-//  Created by studio76 on 14.11.14.
-//  Copyright (c) 2014 studio76. All rights reserved.
+//  Created by Andrew Southern on 05.20.16.
+//  Copyright (c) 2016 Andrew Southern. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>

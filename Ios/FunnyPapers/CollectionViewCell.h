@@ -2,8 +2,8 @@
 //  CollectionViewCell.h
 //  Wallpaperz
 //
-//  Created by CODERLAB on 17.05.14.
-//  Copyright (c) 2014 studio76. All rights reserved.
+//  Created by Andrew Southern on 05.20.16.
+//  Copyright (c) 2016 Andrew Southern. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>

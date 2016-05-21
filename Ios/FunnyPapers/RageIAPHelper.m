@@ -18,8 +18,8 @@
         
         
         NSSet * productIdentifiers = [NSSet setWithObjects:
-                                      deleteAd,
-                                      buyAlbum,
+//                                      deleteAd,
+//                                      buyAlbum,
                                       
                                       nil];
         
